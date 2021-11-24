@@ -1,0 +1,38 @@
+PHPUnit 9.5.10-21-g44313bf33 by Sebastian Bergmann and contributors.
+
+Testing /Users/borisb/playtika/php-errors/tests/tests
+
+##teamcity[testCount count='3' flowId='30251']
+
+##teamcity[testSuiteStarted name='/Users/borisb/playtika/php-errors/tests/tests' flowId='30251']
+
+##teamcity[testSuiteStarted name='Benbor\PhpErrors\DummyTestTest' locationHint='php_qn:///Users/borisb/playtika/php-errors/tests/tests/DummyTestTest.php::\Benbor\PhpErrors\DummyTestTest' flowId='30251']
+
+##teamcity[testStarted name='testDummy' locationHint='php_qn:///Users/borisb/playtika/php-errors/tests/tests/DummyTestTest.php::\Benbor\PhpErrors\DummyTestTest::testDummy' flowId='30251']
+
+##teamcity[testFailed name='testDummy' message='Failed asserting that two strings are identical.' details=' /Users/borisb/playtika/php-errors/tests/tests/DummyTestTest.php:11|n ' duration='6' type='comparisonFailure' actual='|'asdf|'' expected='|'Tasd|'' flowId='30251']
+
+##teamcity[testFinished name='testDummy' duration='6' flowId='30251']
+
+##teamcity[testSuiteFinished name='Benbor\PhpErrors\DummyTestTest' flowId='30251']
+
+##teamcity[testStarted name='/Users/borisb/playtika/php-errors/tests/tests/fail-expect.phpt' flowId='30251']
+
+##teamcity[testFailed name='/Users/borisb/playtika/php-errors/tests/tests/fail-expect.phpt' message='Failed asserting that two strings are equal.' details=' /Users/borisb/playtika/php-errors/tests/tests/fail-expect.phpt:1|n ' duration='39' type='comparisonFailure' actual='|'Foo\n|nMultiline diff\n|nBuzz|'' expected='|'Foo\n|nMultiline\n|nBuzz|'' flowId='30251']
+
+##teamcity[testFinished name='/Users/borisb/playtika/php-errors/tests/tests/fail-expect.phpt' duration='39' flowId='30251']
+
+##teamcity[testStarted name='/Users/borisb/playtika/php-errors/tests/tests/fail-expectf.phpt' flowId='30251']
+
+##teamcity[testFailed name='/Users/borisb/playtika/php-errors/tests/tests/fail-expectf.phpt' message='Failed asserting that string matches format description.' details=' /Users/borisb/playtika/php-errors/tests/tests/fail-expectf.phpt:9|n ' duration='39' type='comparisonFailure' actual='Foo|nMultiline diff|nBuzz' expected='Foo|nMultiline|nBuzz' flowId='30251']
+
+##teamcity[testFinished name='/Users/borisb/playtika/php-errors/tests/tests/fail-expectf.phpt' duration='39' flowId='30251']
+
+##teamcity[testSuiteFinished name='/Users/borisb/playtika/php-errors/tests/tests' flowId='30251']
+
+
+Time: 00:00.110, Memory: 8.00 MB
+
+
+FAILURES!
+Tests: 3, Assertions: 3, Failures: 3.
