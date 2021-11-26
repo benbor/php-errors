@@ -1,8 +1,10 @@
 --INI--
-error_reporting=0
+
 --FILE--
 <?php
 
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use PHPUnit\Framework\Assert;
 use Symfony\Component\ErrorHandler\ErrorHandler;
 
@@ -13,7 +15,13 @@ while (!file_exists($vendor . '/vendor')) {
 require $vendor . '/vendor/autoload.php';
 
 
-ErrorHandler::register();
+$handler = new ErrorHandler();
+$logger = new Logger('monolog', [new StreamHandler('php://stdout')]);
+$handler->setDefaultLogger($logger);
+$handler->throwAt(0);
+//$handler->screamAt();
+
+ErrorHandler::register($handler);
 
 try {
     trigger_error("Test", E_USER_ERROR);
@@ -22,6 +30,9 @@ try {
     echo "Success";
 }
 
+
+var_dump($logger);
 ?>
 --EXPECT--
-Successs
+monolog
+Success
