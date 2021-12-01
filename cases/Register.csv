@@ -1,9 +1,22 @@
-fileName                                  ,PHP71         ,PHP72,PHP73,PHP74,PHP80,PHP81
-ArrayKeyExistsExpectsArrayNullGiven.php   ,E_WARNING     ,tbd  ,tbd  ,tbd  ,tbd  ,tbd
-FunctionArgumentTypeMismatched.php        ,TypeError     ,tbd  ,tbd  ,tbd  ,tbd  ,tbd
-SyntaxError.php                           ,ParseError    ,tbd  ,tbd  ,tbd  ,tbd  ,tbd
-TriggerEUserError.php                     ,E_USER_ERROR  ,tbd  ,tbd  ,tbd  ,tbd  ,tbd
-TriggerEUserNotice.php                    ,E_USER_NOTICE ,tbd  ,tbd  ,tbd  ,tbd  ,tbd
-TriggerEUserWarning.php                   ,E_USER_WARNING,tbd  ,tbd  ,tbd  ,tbd  ,tbd
-TryingToAccessArrayOffsetOnValueOfType.php,E_WARNING     ,tbd  ,tbd  ,tbd  ,tbd  ,tbd
-UndefinedVariable.php                     ,NULL          ,tbd  ,tbd  ,tbd  ,tbd  ,tbd
+fileName                                  ,PHP71            ,PHP72,PHP73,PHP74   ,PHP80    ,PHP81
+
+ArrayKeyExistsExpectsArrayNullGiven.php   ,E_WARNING        ,tbd  ,tbd  ,tbd     ,tbd      ,tbd
+FunctionArgumentTypeMismatched.php        ,TypeError        ,tbd  ,tbd  ,tbd     ,tbd      ,tbd
+RedefinitionOfParameterInsideEval.php     ,ParseError       ,tbd  ,tbd  ,tbd     ,tbd      ,tbd
+SyntaxError.php                           ,ParseError       ,tbd  ,tbd  ,tbd     ,tbd      ,tbd
+TriggerEUserDeprecated.php                ,E_USER_DEPRECATED,tbd  ,tbd  ,tbd     ,tbd      ,tbd
+TriggerEUserError.php                     ,E_USER_ERROR     ,tbd  ,tbd  ,tbd     ,tbd      ,tbd
+TriggerEUserNotice.php                    ,E_USER_NOTICE    ,tbd  ,tbd  ,tbd     ,tbd      ,tbd
+TriggerEUserWarning.php                   ,E_USER_WARNING   ,tbd  ,tbd  ,tbd     ,tbd      ,tbd
+TryingToAccessArrayOffsetOnValueOfType.php,NULL             ,NULL ,NULL ,E_NOTICE,E_WARNING,E_WARNING
+TryingToGetPropertyOfNonObject.php        ,E_NOTICE         ,NULL ,NULL ,E_NOTICE,E_WARNING,E_WARNING
+UndefinedVariable.php                     ,E_NOTICE         ,tbd  ,tbd  ,tbd     ,tbd      ,tbd
+
+# TBD
+# E_PARSE
+# E_CORE_ERROR
+# E_CORE_WARNING
+# E_COMPILE_ERROR
+# E_COMPILE_WARNING
+# E_RECOVERABLE_ERROR
+# E_DEPRECATED

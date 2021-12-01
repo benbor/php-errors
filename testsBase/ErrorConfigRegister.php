@@ -48,6 +48,9 @@ class ErrorConfigRegister
 
             while (($data = fgetcsv($handle)) !== false) {
                 $i++;
+                if ($this->skipLine($data)) {
+                    continue;
+                }
                 $data = $this->assertLine($data, $i);
                 $phpErrors[] = new ErrorConfig(
                     $data[$this->csvColumnsConfig['fileName']],
@@ -107,5 +110,20 @@ class ErrorConfigRegister
         foreach ($this->cases as $case) {
             yield $case->getFileName() => [$case->getExpectedFor($phpVersion), $this->casesDir . $case->getFileName()];
         }
+    }
+
+    private function skipLine(array $data): bool
+    {
+        // skip empty string
+        if ($data[0] === null) {
+            return true;
+        }
+
+        // skip if comments
+        if (strpos($data[0], '#') === 0) {
+            return true;
+        }
+
+        return false;
     }
 }

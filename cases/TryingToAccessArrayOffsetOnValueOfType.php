@@ -1,3 +1,3 @@
 <?php
 $str = 25;
-$str[3];
+$value = $str[3];

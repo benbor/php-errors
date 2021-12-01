@@ -13,8 +13,9 @@ class PhpErrorTester
      */
     private $typeMap;
 
-    public function __construct() {
-        $this->typeMap =  [
+    public function __construct()
+    {
+        $this->typeMap = [
             E_ERROR => new PhpError("E_ERROR", 1),
             E_WARNING => new PhpError("E_WARNING", 2),
             E_PARSE => new PhpError("E_PARSE", 4),
@@ -42,7 +43,7 @@ class PhpErrorTester
     public function expectPhpBehavior($expectedName, \Closure $closure)
     {
         if ($expectedName === "NULL") {
-            $this->expectNothing();
+            $this->expectNothing($expectedName, $closure);
             return;
         }
 
@@ -52,13 +53,114 @@ class PhpErrorTester
         }
 
         if (strpos($expectedName, 'Error') !== false) {
-            $this->expectPhpErrorThrowable($expectedName, $closure);
+            $this->expectThrowableError($expectedName, $closure);
             return;
         }
+
+        Assert::fail(sprintf(
+            "The expected value should be one of the following:\n"
+            . " - E_* Engine error\n"
+            . " - *Error Throwable\n"
+            . " - NULL\n"
+            ."Got %s",
+            $expectedName
+        ));
     }
+
     private function expectPhpEngineError($expectedName, \Closure $closure)
     {
+
+        list($throwable, $errno, $errstr, $errfile, $errline) = $this->execute($closure);
+
         $expectedNo = constant($expectedName);
+        Assert::assertNull($throwable, sprintf(
+            "PHP Engine error expected: %s (%d)\n" .
+            "Got exception:\n %s",
+            $this->typeMap[$expectedNo]->getName(),
+            $expectedNo,
+            (string)$throwable
+        ));
+        Assert::assertNotNull($errno, sprintf(
+            "PHP Engine error expected: %s (%d)\n" .
+            "Got nothing",
+            $this->typeMap[$expectedNo]->getName(),
+            $expectedNo
+        ));
+        Assert::assertSame($expectedNo, $errno, sprintf(
+            "PHP Engine error expected: %s (%d)\n" .
+            "Got PHP Engine error %s (%d) on %s:%s\n %s",
+            $this->typeMap[$expectedNo]->getName(),
+            $expectedNo,
+            $this->typeMap[$errno]->getName(),
+            $errno,
+            $errfile,
+            $errline,
+            $errstr
+        ));
+    }
+
+    private function expectThrowableError($expectedName, \Closure $closure)
+    {
+        list($throwable, $errno, $errstr, $errfile, $errline) = $this->execute($closure);
+
+        if ($errno !== null || $errstr !== null || $errfile!== null || $errline !== null) {
+            Assert::fail(sprintf(
+                "PHP Throwable error expected: %s \n" .
+                "Got PHP Engine error %s (%d) on %s:%s\n %s",
+                $expectedName,
+                $this->typeMap[$errno]->getName(),
+                $errno,
+                $errfile,
+                $errline,
+                $errstr
+            ));
+        }
+
+
+        Assert::assertNotNull($throwable, sprintf(
+            "PHP Throwable error expected: %s \n" .
+            "Got nothing",
+            $expectedName
+        ));
+
+        Assert::assertSame($expectedName, get_class($throwable), sprintf(
+            "PHP Throwable error expected: %s \n" .
+            "Got:\n %s",
+            $expectedName,
+            (string)$throwable
+        ));
+
+    }
+
+    private function expectNothing($expectedName, \Closure $closure)
+    {
+        list($throwable, $errno, $errstr, $errfile, $errline) = $this->execute($closure);
+
+        if ($errno !== null || $errstr !== null || $errfile!== null || $errline !== null) {
+            Assert::fail(sprintf(
+                "No errors expected \n" .
+                "Got PHP Engine error %s (%d) on %s:%s\n %s",
+                $this->typeMap[$errno]->getName(),
+                $errno,
+                $errfile,
+                $errline,
+                $errstr
+            ));
+        }
+
+        Assert::assertNull($throwable, sprintf(
+            "No errors expected \n" .
+            "Got exception:\n %s",
+            (string)$throwable
+        ));
+    }
+
+    /**
+     * @param \Closure $closure
+     * @return array
+     */
+    private function execute(\Closure $closure): array
+    {
         $throwable = null;
 
         $errno = $errstr = $errfile = $errline = null;
@@ -79,38 +181,8 @@ class PhpErrorTester
                 restore_error_handler();
             }
         }
-        Assert::assertNull($throwable, sprintf(
-            "PHP Engine error expected: %s (%d)\n" .
-            "Got exception:\n %s",
-            $this->typeMap[$expectedNo]->getName(),
-            $expectedNo,
-            (string)$throwable
-        ));
-        Assert::assertNotNull($errno, sprintf(
-            "PHP Engine error expected: %s (%d)\n" .
-            "Got nothing",
-            $this->typeMap[$expectedNo]->getName(),
-            $expectedNo
-        ));
-        Assert::assertSame($expectedNo, $errno, sprintf(
-            "PHP Engine error expected: %s (%d)\n" .
-            "Got %s (%d) on %s:%s",
-            $this->typeMap[$expectedNo]->getName(),
-            $expectedNo,
-            $this->typeMap[$errno]->getName(),
-            $errno,
-            $errstr,
-            $errfile
-        ));
+        return [$throwable, $errno, $errstr, $errfile, $errline];
     }
-//
-//    public function skipCodes($code, array $haystack, string $message)
-//    {
-//        if (in_array($code, $haystack, true)) {
-//            $this->markTestSkipped($message);
-//        }
-//    }
-    private function expectNothing()
-    {
-    }
+
+
 }
