@@ -1,51 +1,25 @@
 <?php
 declare(strict_types=1);
 
-use Benbor\PhpErrors\TestsBase\ErrorConfigRegister;
-use Benbor\PhpErrors\TestsBase\PhpErrorTester;
-use PHPUnit\Framework\TestCase;
+use Benbor\PhpErrors\TestsBase\PhpUnitAbstractTestCase;
 
-class Test extends TestCase
+class Test extends PhpUnitAbstractTestCase
 {
-
-    /**
-     * @var PhpErrorTester
-     */
-    private $errorTester;
-    /**
-     * @var ErrorConfigRegister
-     */
-    private $casesRegister;
-
-    public function __construct(string $name = null, array $data = [], $dataName = '')
+    public function __construct($name = null, array $data = [], $dataName = '')
     {
-        parent::__construct($name, $data, $dataName);
+        parent::__construct("PHP71", $name, $data, $dataName);
+    }
 
-        $this->errorTester = new PhpErrorTester();
-        $this->casesRegister = new ErrorConfigRegister();
-
+    /**
+     * @dataProvider dataProviderTestPhpErrors
+     */
+    public function testPhpErrors($expected, $reproScript)
+    {
+        $this->executeTestPhpErrors($expected, $reproScript);
     }
 
     public function testTypeCodesAreExpected()
     {
-        $this->errorTester->baseTestThatPhpCodeNoExpected();
+        $this->executeTestTypeCodesAreExpected();
     }
-
-    public function mapErrorCodeErrorName()
-    {
-        yield from $this->casesRegister->casesFor("PHP71");
-    }
-
-    /**
-     * @dataProvider mapErrorCodeErrorName
-     */
-    public function testPhp7Errors($expected, $reproScript)
-    {
-        $this->errorTester->expectPhpBehavior($expected, function () use ($reproScript) {
-            include $reproScript;
-        });
-
-    }
-
-
 }

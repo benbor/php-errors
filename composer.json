@@ -2,13 +2,6 @@
     "require": {
         "php": ">=7.0"
     },
-    "repositories": [{
-        "type": "vcs",
-        "url": "https://github.com/benbor/phpunit.git"
-    }],
-    "require-dev": {
-        "phpunit/phpunit": "dev-add-phpt-assert-diff-to-teamcity-output-9"
-    },
     "autoload": {
         "psr-4": {
             "Benbor\\PhpErrors\\TestsBase\\": "testsBase/"

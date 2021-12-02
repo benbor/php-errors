@@ -1,16 +1,16 @@
-fileName                                  ,PHP71            ,PHP72,PHP73,PHP74   ,PHP80    ,PHP81
+fileName                                  ,PHP70            ,PHP71            ,PHP72            ,PHP73            ,PHP74            ,PHP80            ,PHP81
 
-ArrayKeyExistsExpectsArrayNullGiven.php   ,E_WARNING        ,tbd  ,tbd  ,tbd     ,tbd      ,tbd
-FunctionArgumentTypeMismatched.php        ,TypeError        ,tbd  ,tbd  ,tbd     ,tbd      ,tbd
-RedefinitionOfParameterInsideEval.php     ,ParseError       ,tbd  ,tbd  ,tbd     ,tbd      ,tbd
-SyntaxError.php                           ,ParseError       ,tbd  ,tbd  ,tbd     ,tbd      ,tbd
-TriggerEUserDeprecated.php                ,E_USER_DEPRECATED,tbd  ,tbd  ,tbd     ,tbd      ,tbd
-TriggerEUserError.php                     ,E_USER_ERROR     ,tbd  ,tbd  ,tbd     ,tbd      ,tbd
-TriggerEUserNotice.php                    ,E_USER_NOTICE    ,tbd  ,tbd  ,tbd     ,tbd      ,tbd
-TriggerEUserWarning.php                   ,E_USER_WARNING   ,tbd  ,tbd  ,tbd     ,tbd      ,tbd
-TryingToAccessArrayOffsetOnValueOfType.php,NULL             ,NULL ,NULL ,E_NOTICE,E_WARNING,E_WARNING
-TryingToGetPropertyOfNonObject.php        ,E_NOTICE         ,NULL ,NULL ,E_NOTICE,E_WARNING,E_WARNING
-UndefinedVariable.php                     ,E_NOTICE         ,tbd  ,tbd  ,tbd     ,tbd      ,tbd
+ArrayKeyExistsExpectsArrayNullGiven.php   ,E_WARNING        ,E_WARNING        ,E_WARNING        ,E_WARNING        ,E_WARNING        ,TypeError        ,TypeError
+FunctionArgumentTypeMismatched.php        ,TypeError        ,TypeError        ,TypeError        ,TypeError        ,TypeError        ,TypeError        ,TypeError
+RedefinitionOfParameterInsideEval.php     ,ParseError       ,ParseError       ,ParseError       ,ParseError       ,ParseError       ,ParseError       ,ParseError
+SyntaxError.php                           ,ParseError       ,ParseError       ,ParseError       ,ParseError       ,ParseError       ,ParseError       ,ParseError
+TriggerEUserDeprecated.php                ,E_USER_DEPRECATED,E_USER_DEPRECATED,E_USER_DEPRECATED,E_USER_DEPRECATED,E_USER_DEPRECATED,E_USER_DEPRECATED,E_USER_DEPRECATED
+TriggerEUserError.php                     ,E_USER_ERROR     ,E_USER_ERROR     ,E_USER_ERROR     ,E_USER_ERROR     ,E_USER_ERROR     ,E_USER_ERROR     ,E_USER_ERROR
+TriggerEUserNotice.php                    ,E_USER_NOTICE    ,E_USER_NOTICE    ,E_USER_NOTICE    ,E_USER_NOTICE    ,E_USER_NOTICE    ,E_USER_NOTICE    ,E_USER_NOTICE
+TriggerEUserWarning.php                   ,E_USER_WARNING   ,E_USER_WARNING   ,E_USER_WARNING   ,E_USER_WARNING   ,E_USER_WARNING   ,E_USER_WARNING   ,E_USER_WARNING
+TryingToAccessArrayOffsetOnValueOfType.php,NULL             ,NULL             ,NULL             ,NULL             ,E_NOTICE         ,E_WARNING        ,E_WARNING
+TryingToGetPropertyOfNonObject.php        ,E_NOTICE         ,E_NOTICE         ,E_NOTICE         ,E_NOTICE         ,E_NOTICE         ,E_WARNING        ,E_WARNING
+UndefinedVariable.php                     ,E_NOTICE         ,E_NOTICE         ,E_NOTICE         ,E_NOTICE         ,E_NOTICE         ,E_WARNING        ,E_WARNING
 
 # TBD
 # E_PARSE

@@ -5,6 +5,7 @@ namespace Benbor\PhpErrors\TestsBase;
 
 class ErrorConfig
 {
+    const PHP70 = "PHP70";
     const PHP71 = "PHP71";
     const PHP72 = "PHP72";
     const PHP73 = "PHP73";
@@ -22,9 +23,10 @@ class ErrorConfig
      */
     private $expected;
 
-    public function __construct(string $fileName, string $php71, string $php72, string $php73, string $php74, string $php80, string $php81)
+    public function __construct(string $fileName, string $php70, string $php71, string $php72, string $php73, string $php74, string $php80, string $php81)
     {
         $this->fileName = $fileName;
+        $this->expected[self::PHP70] = $php70;
         $this->expected[self::PHP71] = $php71;
         $this->expected[self::PHP72] = $php72;
         $this->expected[self::PHP73] = $php73;

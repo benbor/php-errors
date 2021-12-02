@@ -14,12 +14,13 @@ class ErrorConfigRegister
 
     private $csvColumnsConfig = [
         "fileName" => 0,
-        ErrorConfig::PHP71 => 1,
-        ErrorConfig::PHP72 => 2,
-        ErrorConfig::PHP73 => 3,
-        ErrorConfig::PHP74 => 4,
-        ErrorConfig::PHP80 => 5,
-        ErrorConfig::PHP81 => 6,
+        ErrorConfig::PHP70 => 1,
+        ErrorConfig::PHP71 => 2,
+        ErrorConfig::PHP72 => 3,
+        ErrorConfig::PHP73 => 4,
+        ErrorConfig::PHP74 => 5,
+        ErrorConfig::PHP80 => 6,
+        ErrorConfig::PHP81 => 7,
     ];
 
     public function __construct()
@@ -54,6 +55,7 @@ class ErrorConfigRegister
                 $data = $this->assertLine($data, $i);
                 $phpErrors[] = new ErrorConfig(
                     $data[$this->csvColumnsConfig['fileName']],
+                    $data[$this->csvColumnsConfig[ErrorConfig::PHP70]],
                     $data[$this->csvColumnsConfig[ErrorConfig::PHP71]],
                     $data[$this->csvColumnsConfig[ErrorConfig::PHP72]],
                     $data[$this->csvColumnsConfig[ErrorConfig::PHP73]],
