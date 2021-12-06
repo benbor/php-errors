@@ -44,4 +44,5 @@ class ErrorConfig
     {
         return $this->expected[$phpVersion];
     }
+
 }

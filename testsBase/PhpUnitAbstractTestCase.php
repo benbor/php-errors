@@ -22,6 +22,10 @@ abstract class PhpUnitAbstractTestCase extends TestCase
     public function __construct($testingPhpVersion, $name = null, array $data = [], $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
+
+        if (!self::isPhpVersionParamValid($testingPhpVersion)) {
+            self::fail("Not supported PHP version: $testingPhpVersion");
+        }
         $this->testingPhpVersion = $testingPhpVersion;
         $this->typeMap = [
             E_ERROR => new PhpError("E_ERROR", 1),
@@ -50,7 +54,6 @@ abstract class PhpUnitAbstractTestCase extends TestCase
      * which should be called
      */
 
-
     public function dataProviderTestPhpErrors()
     {
         yield from $this->casesRegister->casesFor($this->testingPhpVersion);
@@ -73,6 +76,23 @@ abstract class PhpUnitAbstractTestCase extends TestCase
     abstract public function testTypeCodesAreExpected();
 
     /* ============= End abstract tests ============= */
+
+    private static function isPhpVersionParamValid($testingPhpVersion): bool
+    {
+        $isValidVersion = in_array($testingPhpVersion, [
+            ErrorConfig::PHP70,
+            ErrorConfig::PHP71,
+            ErrorConfig::PHP72,
+            ErrorConfig::PHP73,
+            ErrorConfig::PHP74,
+            ErrorConfig::PHP80,
+            ErrorConfig::PHP81,
+        ], true);
+
+        $isValidEnv = $testingPhpVersion === 'PHP'.PHP_MAJOR_VERSION.PHP_MINOR_VERSION;
+
+        return $isValidVersion && $isValidEnv;
+    }
 
     private function expectPhpBehavior($expectedName, \Closure $closure)
     {
@@ -103,7 +123,6 @@ abstract class PhpUnitAbstractTestCase extends TestCase
 
     private function expectPhpEngineError($expectedName, \Closure $closure)
     {
-
         list($throwable, $errno, $errstr, $errfile, $errline) = $this->execute($closure);
 
         $expectedNo = constant($expectedName);
