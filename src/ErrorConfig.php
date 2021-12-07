@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Benbor\PhpErrors\TestsBase;
+namespace Benbor\PhpErrors;
 
 class ErrorConfig
 {

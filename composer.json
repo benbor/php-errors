@@ -4,7 +4,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Benbor\\PhpErrors\\TestsBase\\": "testsBase/"
+            "Benbor\\PhpErrors\\": "src/"
         }
     },
     "config": {

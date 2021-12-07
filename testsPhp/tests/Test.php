@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-use Benbor\PhpErrors\TestsBase\PhpUnitAbstractTestCase;
+use Benbor\PhpErrors\PhpUnitAbstractTestCase;
 
 class Test extends PhpUnitAbstractTestCase
 {

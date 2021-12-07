@@ -1,6 +1,6 @@
 <?php
 
-namespace Benbor\PhpErrors\TestsBase;
+namespace Benbor\PhpErrors;
 
 use PHPUnit\Framework\TestCase;
 

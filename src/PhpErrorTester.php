@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Benbor\PhpErrors\TestsBase;
+namespace Benbor\PhpErrors;
 
 use PHPUnit\Framework\Assert;
 
